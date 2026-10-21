@@ -206,6 +206,7 @@ function assertModuleTreesPresent() {
     '../html/out',
     '../mindmap/out',
     '../hwp/out',
+    '../excalidraw/out',
     '../../packages/cli/dist/genoffice.cjs',
     '../../packages/cli/dist/node_modules/jsdom',
   ]) {
@@ -547,6 +548,10 @@ const config = {
     {
       from: '../hwp/out',
       to: 'modules/hwp',
+    },
+    {
+      from: '../excalidraw/out',
+      to: 'modules/excalidraw',
     },
     // PDF text editing engines: the bundled main resolves these under
     // Resources/wasm when node_modules is absent (apps/pdf/src/main/wasm-path.ts)

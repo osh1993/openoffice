@@ -54,3 +54,4 @@
 | [0051](0051-mention-documents-in-ai-input.md)                 | AI 창 입력란에서 `@`로 열린 문서와 최근 문서를 붙이고, 1단계는 저장된 파일만 읽는다             | 2026-10-22 |
 | [0052](0052-trademark-and-license-notices.md)                 | 다른 회사의 로고와 닮은 그림을 쓰지 않고, 고지는 사용자가 실제로 보는 곳에 둔다                 | 2026-10-22 |
 | [0059](0059-markdown-internal-links.md)                       | 마크다운에서 Ctrl+클릭으로 내부 링크를 따라가고, 위키링크는 글자로 두고 꾸미기만 한다           | 2026-10-22 |
+| [0054](0054-excalidraw-editor.md)                             | Excalidraw 그림은 전용 편집기로 열고 고치며, Obsidian 커뮤니티 플러그인은 앱에 올리지 않는다    | 2026-10-21 |

@@ -75,6 +75,7 @@ const KIND_ICON: Record<TabSummary['kind'], ReactElement> = {
   html: <FileKindIcon src={iconHtml} />,
   mindmap: <FileKindIcon src={iconMindmap} />,
   hwp: <FileKindIcon src={iconHwp} />,
+  excalidraw: <FileKindIcon src={iconMd} />,
   help: <HelpIcon />,
 }
 

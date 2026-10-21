@@ -39,7 +39,7 @@ import {
 } from './markdown/docText'
 import { buildSourceMap, spliceMarkdown, type SourceMap } from './markdown/sourceSplice'
 import { applySourceText } from './markdown/sourceView'
-import { isSourceMode, textModeForPath, type TextMode } from '../shared/text-mode'
+import { isSourceMode, textModeForContent, type TextMode } from '../shared/text-mode'
 import { renameAction } from '../shared/rename-mode'
 import { readSourceText, writeSourceText, type SourceTextFormat } from '../shared/source-text'
 import { PlainTextEditor, type PlainTextEditorHandle } from './source/PlainTextEditor'
@@ -155,6 +155,9 @@ export default function App() {
   // a .txt/.json has no block document behind it: it is edited as source so
   // that saving cannot reinterpret it as markdown
   const [textMode, setTextMode] = useState<TextMode>('markdown')
+  // read by callbacks that outlive a render (a note append arriving later)
+  const textModeRef = useRef<TextMode>('markdown')
+  textModeRef.current = textMode
   const sourceRef = useRef<PlainTextEditorHandle | null>(null)
   const sourceTextRef = useRef('')
   const sourceFormatRef = useRef<SourceTextFormat>({ bom: false, eol: '\n', trailingNewline: true })
@@ -364,7 +367,8 @@ export default function App() {
    */
   const loadFromPath = useCallback(
     (path: string, raw: string) => {
-      const mode = textModeForPath(path)
+      const mode = textModeForContent(path, raw)
+      textModeRef.current = mode
       setTextMode(mode)
       if (sourceApplyTimerRef.current) clearTimeout(sourceApplyTimerRef.current)
       sourceApplyTimerRef.current = null
@@ -596,7 +600,7 @@ export default function App() {
   // as a changed, unsaved edit (the file is not written here)
   const takeNoteAppends = useCallback(async () => {
     const path = filePathRef.current
-    if (statusRef.current !== 'ready' || !path || isSourceMode(textModeForPath(path))) return
+    if (statusRef.current !== 'ready' || !path || isSourceMode(textModeRef.current)) return
     const texts = (await window.markdownApi.takeNoteAppend?.()) ?? []
     const current = editorRef.current
     const text = joinNoteAppends(texts)
