@@ -10,6 +10,7 @@ import iconMd from './assets/file-md.svg'
 import iconHtml from './assets/file-html.svg'
 import iconMindmap from './assets/file-mindmap.svg'
 import iconHwp from './assets/file-hwp.svg'
+import iconExcalidraw from './assets/file-excalidraw.svg'
 import type {
   FolderEntry,
   FolderListing,
@@ -95,6 +96,7 @@ const FILE_ICONS: Record<string, string> = {
   xmind: iconMindmap,
   hwp: iconHwp,
   hwpx: iconHwp,
+  excalidraw: iconExcalidraw,
 }
 
 /* Formats the open-local card advertises. Too long for the card at any window
@@ -120,8 +122,11 @@ function fixedViewportWidth(): number {
   return document.documentElement.clientWidth
 }
 
-function FileBadge({ ext, size }: { ext: string; size: number }) {
-  const icon = FILE_ICONS[ext]
+/** an Obsidian drawing note is a `.md` file named `*.excalidraw.md`; it gets the drawing icon */
+const DRAWING_NOTE_RE = /\.excalidraw\.md$/i
+
+function FileBadge({ ext, size, name }: { ext: string; size: number; name?: string }) {
+  const icon = FILE_ICONS[name && DRAWING_NOTE_RE.test(name) ? 'excalidraw' : ext]
   if (icon) {
     return <img src={icon} width={size} height={size} alt="" aria-hidden="true" />
   }
@@ -2273,7 +2278,7 @@ export function Home({
             />
           </span>
           <span className="recent-icon">
-            <FileBadge ext={entry.ext} size={24} />
+            <FileBadge ext={entry.ext} name={entry.name} size={24} />
           </span>
           {isRenaming ? (
             <input
@@ -2718,7 +2723,7 @@ export function Home({
       }}
     >
       <span className="recent-icon">
-        <FileBadge ext={hit.ext} size={24} />
+        <FileBadge ext={hit.ext} name={hit.path} size={24} />
       </span>
       <div className="search-main">
         <div className="search-head">
