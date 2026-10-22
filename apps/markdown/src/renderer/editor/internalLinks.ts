@@ -255,6 +255,13 @@ function inCode(state: EditorState, range: Range): boolean {
   return $from.marks().some((mark) => mark.type.name === 'code')
 }
 
+/** the caret sits inside a wiki link that is already closed (`[[Ta|sks]]`): editing, not typing one */
+function insideClosedLink(state: EditorState, range: Range): boolean {
+  const $to = state.doc.resolve(range.to)
+  const rest = $to.parent.textBetween($to.parentOffset, $to.parent.content.size, '\n', '\n')
+  return /^[^[\]\n]*\]\]/.test(rest)
+}
+
 export const InternalLinks = Extension.create<InternalLinksOptions>({
   name: 'internalLinks',
 
@@ -376,7 +383,9 @@ export const InternalLinks = Extension.create<InternalLinksOptions>({
           allowSpaces: true,
           allowedPrefixes: null,
           allow: ({ state, range }) =>
-            !inCode(state, range) && !state.doc.textBetween(range.from, range.to).includes(']'),
+            !inCode(state, range) &&
+            !state.doc.textBetween(range.from, range.to).includes(']') &&
+            !insideClosedLink(state, range),
           command: ({ editor: current, range, props }) => {
             // swallow a closing `]]` already typed after the caret
             const after = current.state.doc.textBetween(

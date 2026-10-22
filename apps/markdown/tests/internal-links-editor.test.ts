@@ -270,4 +270,16 @@ describe('[[ completion', () => {
     await flush()
     expect(items).not.toHaveBeenCalled()
   })
+
+  it('does not open when the caret lands inside a link that is already closed', async () => {
+    const states: (NoteSuggestState | null)[] = []
+    const items = vi.fn(async () => [])
+    const editor = createEditor(stubHost(), { states, items })
+    editor.commands.setContent('Next: [[Tasks#Due]] and more\n', { contentType: 'markdown' })
+    editor.commands.setTextSelection(posOf(editor, 'Tasks', 3))
+    await flush()
+    expect(items).not.toHaveBeenCalled()
+    expect(states.filter(Boolean)).toEqual([])
+    expect(wikiDecorations(editor)).toEqual(['[[Tasks#Due]]'])
+  })
 })
