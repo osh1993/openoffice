@@ -30,5 +30,5 @@ Obsidian 플러그인은 Obsidian이 실행 중에 넣어 주는 `obsidian` 모�
 - 빌드한 그림 편집기 화면은 약 26MB다(글꼴 14MB, 라이브러리의 Mermaid 변환 포함).
 - 노트를 바꾼 저장에서 `Drawing` 블록은 탭 들여쓰기 JSON으로 다시 쓰인다(압축 블록은 256자씩 줄을 나눈다). 플러그인이 쓰는 모양과 같다.
 - 라이브러리는 불러올 때 모든 요소를 다시 만들기 때문에, 열기만 한 그림을 바뀜으로 보지 않도록 첫 변경 알림을 기준으로 삼는다. 되돌리기로 처음 모습에 돌아가도 요소의 판 번호가 달라서 "바뀜"으로 남는다.
-- 그림 아이콘은 다른 파일 아이콘과 같은 생성기(`tools/gen-file-association-icons.mjs`)의 `excalidraw` 형식이다. 올리브색 등판에 손으로 그린 상자·원과 자유 곡선(16px에서는 굵은 곡선 하나)이고, Excalidraw의 상표 색과 그림을 따르지 않는다(결정 0052). 탭과 홈 화면의 파일 목록(`.excalidraw`, `*.excalidraw.md`)이 쓴다. 생성기가 `excalidraw.ico`·`.icns`도 만들지만, `.excalidraw` 파일 연결은 아직 없어 설치 프로그램은 쓰지 않는다.
+- 그림 아이콘은 다른 파일 아이콘과 같은 생성기(`tools/gen-file-association-icons.mjs`)의 `excalidraw` 형식이다. 올리브색 등판에 손으로 그린 상자·원과 자유 곡선(16px에서는 굵은 곡선 하나)이고, Excalidraw의 상표 색과 그림을 따르지 않는다(결정 0052). 탭과 홈 화면의 파일 목록(`.excalidraw`, `*.excalidraw.md`)이 쓴다. 설치 프로그램은 `.excalidraw`를 마인드맵(`.xmind`, 결정 0019)처럼 "연결 프로그램" 후보로만 등록하고 기본 프로그램은 가져오지 않는다(Windows `IeumOffice.Drawing`과 `excalidraw.ico`, Mac·Linux는 `Alternate`, MIME `application/vnd.excalidraw+json`). 형식 이름은 다른 제품 이름 대신 "Drawing"이다.
 - 남은 일(다음 단계): AI 창과 도구, MCP·첨부·검색에서 그림 노트의 글 읽기(`packages/file-parse`), PNG·SVG 내보내기, 만들기 넘겨주기, 노트에 그림 넣기, 다른 노트 임베드, `.excalidraw` 파일 연결(설치 프로그램), 홈 화면의 새 그림 카드, 앱 안 도움말.
