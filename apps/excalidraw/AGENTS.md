@@ -1,6 +1,6 @@
 # apps/excalidraw (`@genoffice/excalidraw`)
 
-그림 편집기다. Obsidian Excalidraw 플러그인의 그림 노트(`.excalidraw.md`, 앞머리에 `excalidraw-plugin`이 있는 `.md`)와 `.excalidraw` 파일을 열고 고치고 저장한다(결정 0054). 그리는 일은 Excalidraw 라이브러리(`@excalidraw/excalidraw`, `0.18.1`로 고정)가 하고, 파일은 `packages/excalidraw-engine`이 다룬다. 이 모듈은 둘 사이를 잇는다.
+그림 편집기다. Obsidian Excalidraw 플러그인의 그림 노트(`.excalidraw.md`, 앞머리에 `excalidraw-plugin`이 있는 `.md`)와 `.excalidraw` 파일을 열고 고치고 저장한다(결정 0060). 그리는 일은 Excalidraw 라이브러리(`@excalidraw/excalidraw`, `0.18.1`로 고정)가 하고, 파일은 `packages/excalidraw-engine`이 다룬다. 이 모듈은 둘 사이를 잇는다.
 
 ## 맡은 범위
 

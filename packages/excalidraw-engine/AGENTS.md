@@ -1,6 +1,6 @@
 # packages/excalidraw-engine (`@genoffice/excalidraw-engine`)
 
-그림 파일을 열고 저장하는 엔진이다. Obsidian Excalidraw 플러그인의 그림 노트(`.excalidraw.md`)와 Excalidraw 웹 앱의 `.excalidraw`(JSON)를 다룬다. 원본 프로그램에서 온 것이 아니라 이 프로젝트가 직접 만든 패키지다(결정 0054). 화면 코드와 Node 전용 기능을 쓰지 않는 순수 코드라서 편집기 화면(`apps/excalidraw`), 편집기 뒷단, 껍데기 앱, 마크다운 편집기가 같은 코드를 쓴다.
+그림 파일을 열고 저장하는 엔진이다. Obsidian Excalidraw 플러그인의 그림 노트(`.excalidraw.md`)와 Excalidraw 웹 앱의 `.excalidraw`(JSON)를 다룬다. 원본 프로그램에서 온 것이 아니라 이 프로젝트가 직접 만든 패키지다(결정 0060). 화면 코드와 Node 전용 기능을 쓰지 않는 순수 코드라서 편집기 화면(`apps/excalidraw`), 편집기 뒷단, 껍데기 앱, 마크다운 편집기가 같은 코드를 쓴다.
 
 ## 맡은 범위
 

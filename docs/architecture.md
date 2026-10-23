@@ -18,7 +18,7 @@ apps/markdown   마크다운·텍스트 편집기
 apps/html       HTML 편집기
 apps/mindmap    마인드맵(.xmind) 편집기. 지도를 그리는 일은 mind-elixir, 파일은 packages/xmind-engine이 맡는다
 apps/excalidraw 그림 편집기. Obsidian의 그림 노트(.excalidraw.md, 앞머리로 알아보는 .md)와 .excalidraw를 연다.
-                그리는 일은 Excalidraw 라이브러리, 파일은 packages/excalidraw-engine이 맡는다(결정 0054)
+                그리는 일은 Excalidraw 라이브러리, 파일은 packages/excalidraw-engine이 맡는다(결정 0060)
 apps/hwp        한글(.hwp·.hwpx) 편집기. 편집 화면은 오픈소스 rhwp의 웹 편집기를 앱 안에 넣어 띄운다. AI는
                 그 편집기 안에 넣은 자체 플러그인을 거쳐 글자와 서식을 바꾸고, 문단과 표를 넣고, 표의 칸과 누름틀을 채운다
 packages/ai-provider   제공자 목록, 제공자 선택 규칙, 구독 프로그램 실행부, 키 방식 제공자 연결
