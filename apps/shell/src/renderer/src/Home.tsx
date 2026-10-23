@@ -1103,6 +1103,9 @@ export function Home({
   const [fileSort, setFileSort] = useState<'recent' | 'oldest'>('recent')
   const [fileSortMenuOpen, setFileSortMenuOpen] = useState(false)
   const fileSortRef = useRef<HTMLDivElement>(null)
+  // the same choice from the button beside the search box, which also leads to the Jev setting
+  const [searchSortMenuOpen, setSearchSortMenuOpen] = useState(false)
+  const searchSortRef = useRef<HTMLDivElement>(null)
   const [rowMenu, setRowMenu] = useState<string | null>(null)
   // actions cell (… button + menu) of the row whose menu is open — the dismissal guard root
   const rowMenuWrapRef = useRef<HTMLSpanElement>(null)
@@ -1356,6 +1359,9 @@ export function Home({
   useDismissablePopover(fileSortMenuOpen, () => setFileSortMenuOpen(false), {
     inside: () => [fileSortRef.current],
   })
+  useDismissablePopover(searchSortMenuOpen, () => setSearchSortMenuOpen(false), {
+    inside: () => [searchSortRef.current],
+  })
 
   const loadMore = () => {
     if (loadingMore || !hasMore) return
@@ -1463,25 +1469,28 @@ export function Home({
       </button>
       {fileSortMenuOpen && (
         <div className="cloud-sort-menu" role="menu">
-          {(['recent', 'oldest'] as const).map((key) => (
-            <button
-              key={key}
-              className={fileSort === key ? 'active' : ''}
-              role="menuitemradio"
-              aria-checked={fileSort === key}
-              onClick={() => {
-                setFileSort(key)
-                setFileSortMenuOpen(false)
-              }}
-            >
-              <SortCheck visible={fileSort === key} />
-              {t(key === 'recent' ? 'cloudSortRecent' : 'cloudSortOldest')}
-            </button>
-          ))}
+          {renderSortOptions(() => setFileSortMenuOpen(false))}
         </div>
       )}
     </div>
   )
+
+  const renderSortOptions = (close: () => void) =>
+    (['recent', 'oldest'] as const).map((key) => (
+      <button
+        key={key}
+        className={fileSort === key ? 'active' : ''}
+        role="menuitemradio"
+        aria-checked={fileSort === key}
+        onClick={() => {
+          setFileSort(key)
+          close()
+        }}
+      >
+        <SortCheck visible={fileSort === key} />
+        {t(key === 'recent' ? 'cloudSortRecent' : 'cloudSortOldest')}
+      </button>
+    ))
 
   // ── Plain view (no folder selected): filtering runs in the main process; entries is the visible list ──
   const selectedPaths = entries.filter((e) => selected.has(e.path)).map((e) => e.path)
@@ -2638,28 +2647,49 @@ export function Home({
     searchInputRef.current?.focus()
   }
 
-  const renderSearchSettingsButton = () => (
-    <button
-      className="file-search-settings"
-      title={t('searchJevSettings')}
-      aria-label={t('searchJevSettings')}
-      onClick={() => setSettingsRequest({ section: 'aiMedia', block: 'rerank' })}
-    >
-      <svg
-        width="16"
-        height="16"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        aria-hidden="true"
+  // the icon reads as "sort", so it opens the sort choices; the Jev setting it once led to sits below them
+  const renderSearchSortButton = () => (
+    <div className="file-search-sort" ref={searchSortRef}>
+      <button
+        className="file-search-settings"
+        title={t('fileSortMenu')}
+        aria-label={t('fileSortMenu')}
+        aria-haspopup="menu"
+        aria-expanded={searchSortMenuOpen}
+        onClick={() => setSearchSortMenuOpen((o) => !o)}
       >
-        <path d="M12 20V4M12 4l-4 4M12 4l4 4" />
-        <path d="M3 12h6M3 16h5M3 20h4" />
-      </svg>
-    </button>
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M12 20V4M12 4l-4 4M12 4l4 4" />
+          <path d="M3 12h6M3 16h5M3 20h4" />
+        </svg>
+      </button>
+      {searchSortMenuOpen && (
+        <div className="cloud-sort-menu" role="menu">
+          {renderSortOptions(() => setSearchSortMenuOpen(false))}
+          <div className="cloud-sort-sep" role="separator" />
+          <button
+            role="menuitem"
+            onClick={() => {
+              setSearchSortMenuOpen(false)
+              setSettingsRequest({ section: 'aiMedia', block: 'rerank' })
+            }}
+          >
+            <SortCheck visible={false} />
+            {t('searchJevSettings')}
+          </button>
+        </div>
+      )}
+    </div>
   )
 
   const renderSearchBox = () => (
@@ -2982,7 +3012,7 @@ export function Home({
             )}
             <div className="file-search-group">
               {renderSearchBox()}
-              {renderSearchSettingsButton()}
+              {renderSearchSortButton()}
             </div>
             {searchActive ? (
               renderSearchHeading()
@@ -3153,7 +3183,7 @@ export function Home({
             )}
             <div className="file-search-group">
               {renderSearchBox()}
-              {renderSearchSettingsButton()}
+              {renderSearchSortButton()}
             </div>
             {searchActive ? (
               renderSearchHeading()

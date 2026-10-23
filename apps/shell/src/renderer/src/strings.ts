@@ -36,6 +36,7 @@ export const strings = {
     askUnknownError: 'AI 请求失败,请重试。',
     cloudSortRecent: '最近',
     cloudSortOldest: '最早',
+    fileSortMenu: '排序',
     navTrash: '回收站',
     navTrashTip: '删除的文件在系统废纸篓中，可从那里还原',
     secQuickStart: '快速开始',
@@ -520,6 +521,7 @@ export const strings = {
     askUnknownError: 'The AI request failed. Try again.',
     cloudSortRecent: 'Recent',
     cloudSortOldest: 'Oldest',
+    fileSortMenu: 'Sort',
     navTrash: 'Trash',
     navTrashTip: 'Deleted files go to the system Trash and can be restored there',
     secQuickStart: 'Quick start',
@@ -1022,6 +1024,7 @@ export const strings = {
     askUnknownError: 'Yêu cầu AI thất bại. Thử lại.',
     cloudSortRecent: 'Gần đây',
     cloudSortOldest: 'Cũ nhất',
+    fileSortMenu: 'Sắp xếp',
     navTrash: 'Thùng rác',
     navTrashTip: 'Các tệp đã xóa sẽ chuyển vào Thùng rác hệ thống và có thể khôi phục tại đó',
     secQuickStart: 'Bắt đầu nhanh',
@@ -1526,6 +1529,7 @@ export const strings = {
     askUnknownError: 'AI リクエストに失敗しました。もう一度お試しください。',
     cloudSortRecent: '新しい順',
     cloudSortOldest: '古い順',
+    fileSortMenu: '並べ替え',
     navTrash: 'ゴミ箱',
     navTrashTip: '削除したファイルはシステムのゴミ箱に移動され、そこから復元できます',
     // Section headings
@@ -2045,6 +2049,7 @@ export const strings = {
     askUnknownError: 'AI 요청에 실패했습니다. 다시 시도해 주세요.',
     cloudSortRecent: '최신순',
     cloudSortOldest: '오래된순',
+    fileSortMenu: '정렬',
     navTrash: '휴지통',
     navTrashTip: '삭제된 파일은 시스템 휴지통으로 이동되며 그곳에서 복원할 수 있습니다',
     // Section headings
@@ -2549,6 +2554,7 @@ export const strings = {
     askUnknownError: 'La requête IA a échoué. Réessayez.',
     cloudSortRecent: 'Récents',
     cloudSortOldest: 'Plus anciens',
+    fileSortMenu: 'Trier',
     navTrash: 'Corbeille',
     navTrashTip:
       'Les fichiers supprimés sont placés dans la corbeille du système et peuvent y être restaurés',
@@ -3073,6 +3079,7 @@ export const strings = {
     askUnknownError: 'Die KI-Anfrage ist fehlgeschlagen. Bitte erneut versuchen.',
     cloudSortRecent: 'Neueste',
     cloudSortOldest: 'Älteste',
+    fileSortMenu: 'Sortieren',
     navTrash: 'Papierkorb',
     navTrashTip:
       'Gelöschte Dateien werden in den System-Papierkorb verschoben und können dort wiederhergestellt werden',
@@ -3604,6 +3611,7 @@ export const strings = {
     askUnknownError: 'La solicitud de IA falló. Inténtalo de nuevo.',
     cloudSortRecent: 'Recientes',
     cloudSortOldest: 'Más antiguos',
+    fileSortMenu: 'Ordenar',
     navTrash: 'Papelera',
     navTrashTip:
       'Los archivos eliminados van a la papelera del sistema y pueden restaurarse desde allí',
@@ -4124,6 +4132,7 @@ export const strings = {
     askUnknownError: 'คำขอ AI ล้มเหลว โปรดลองอีกครั้ง',
     cloudSortRecent: 'ล่าสุด',
     cloudSortOldest: 'เก่าสุด',
+    fileSortMenu: 'เรียงลำดับ',
     navTrash: 'ถังขยะ',
     navTrashTip: 'ไฟล์ที่ถูกลบจะถูกย้ายไปยังถังขยะของระบบ และสามารถกู้คืนได้จากที่นั่น',
     // Section headings
@@ -4627,6 +4636,7 @@ export const strings = {
     askUnknownError: 'Permintaan AI gagal. Coba lagi.',
     cloudSortRecent: 'Terbaru',
     cloudSortOldest: 'Terlama',
+    fileSortMenu: 'Urutkan',
     navTrash: 'Sampah',
     navTrashTip:
       'File yang dihapus akan dipindahkan ke tempat sampah sistem dan dapat dipulihkan dari sana',
@@ -5144,6 +5154,7 @@ export const strings = {
     askUnknownError: 'Запрос к ИИ не удался. Попробуйте снова.',
     cloudSortRecent: 'Сначала новые',
     cloudSortOldest: 'Сначала старые',
+    fileSortMenu: 'Сортировка',
     navTrash: 'Корзина',
     navTrashTip: 'Удалённые файлы перемещаются в системную корзину, откуда их можно восстановить',
     // Section headings
@@ -5662,6 +5673,7 @@ export const strings = {
     askUnknownError: 'فشل طلب الذكاء الاصطناعي. حاول مجدداً.',
     cloudSortRecent: 'الأحدث',
     cloudSortOldest: 'الأقدم',
+    fileSortMenu: 'ترتيب',
     navTrash: 'سلة المهملات',
     navTrashTip: 'تُنقل الملفات المحذوفة إلى سلة مهملات النظام ويمكن استعادتها من هناك',
     // Section headings
@@ -6166,6 +6178,7 @@ export const strings = {
     askUnknownError: 'A solicitação de IA falhou. Tente novamente.',
     cloudSortRecent: 'Recentes',
     cloudSortOldest: 'Mais antigos',
+    fileSortMenu: 'Ordenar',
     navTrash: 'Lixeira',
     navTrashTip:
       'Os arquivos excluídos vão para a lixeira do sistema e podem ser restaurados de lá',
@@ -6679,6 +6692,7 @@ export const strings = {
     askUnknownError: 'La richiesta IA non è riuscita. Riprova.',
     cloudSortRecent: 'Recenti',
     cloudSortOldest: 'Meno recenti',
+    fileSortMenu: 'Ordina',
     navTrash: 'Cestino',
     navTrashTip:
       'I file eliminati vengono spostati nel cestino di sistema e possono essere ripristinati da lì',
@@ -7190,6 +7204,7 @@ export const strings = {
     askUnknownError: 'Żądanie AI nie powiodło się. Spróbuj ponownie.',
     cloudSortRecent: 'Najnowsze',
     cloudSortOldest: 'Najstarsze',
+    fileSortMenu: 'Sortuj',
     navTrash: 'Kosz',
     navTrashTip: 'Usunięte pliki trafiają do systemowego kosza i można je stamtąd przywrócić',
     secQuickStart: 'Szybki start',
@@ -7698,6 +7713,7 @@ export const strings = {
     askUnknownError: 'Požadavek na AI selhal. Zkuste to znovu.',
     cloudSortRecent: 'Nejnovější',
     cloudSortOldest: 'Nejstarší',
+    fileSortMenu: 'Seřadit',
     navTrash: 'Koš',
     navTrashTip: 'Odstraněné soubory se přesunou do systémového koše, odkud je lze obnovit',
     secQuickStart: 'Rychlý start',
@@ -8201,6 +8217,7 @@ export const strings = {
     askUnknownError: 'De AI-aanvraag is mislukt. Probeer het opnieuw.',
     cloudSortRecent: 'Recent',
     cloudSortOldest: 'Oudste',
+    fileSortMenu: 'Sorteren',
     navTrash: 'Prullenbak',
     navTrashTip:
       'Verwijderde bestanden gaan naar de systeemprullenbak en kunnen daar worden hersteld',
@@ -8710,6 +8727,7 @@ export const strings = {
     askUnknownError: 'Permintaan AI gagal. Cuba lagi.',
     cloudSortRecent: 'Terbaru',
     cloudSortOldest: 'Terlama',
+    fileSortMenu: 'Isih',
     navTrash: 'Tong sampah',
     navTrashTip:
       'Fail yang dipadamkan akan dipindahkan ke tong sampah sistem dan boleh dipulihkan dari sana',
@@ -9220,6 +9238,7 @@ export const strings = {
     askUnknownError: 'בקשת ה-AI נכשלה. נסה שוב.',
     cloudSortRecent: 'החדשים ביותר',
     cloudSortOldest: 'הישנים ביותר',
+    fileSortMenu: 'מיון',
     navTrash: 'אשפה',
     navTrashTip: 'קבצים שנמחקו עוברים לאשפה של המערכת וניתן לשחזר אותם משם',
     secQuickStart: 'התחלה מהירה',
@@ -9706,6 +9725,7 @@ export const strings = {
     askUnknownError: 'AI अनुरोध विफल रहा। फिर से प्रयास करें।',
     cloudSortRecent: 'हाल के',
     cloudSortOldest: 'सबसे पुराने',
+    fileSortMenu: 'क्रमबद्ध करें',
     navTrash: 'ट्रैश',
     navTrashTip: 'हटाई गई फ़ाइलें सिस्टम ट्रैश में जाती हैं और वहाँ से पुनर्स्थापित की जा सकती हैं',
     secQuickStart: 'त्वरित प्रारंभ',
@@ -10206,6 +10226,7 @@ export const strings = {
     askUnknownError: 'AI 請求失敗,請重試。',
     cloudSortRecent: '最近',
     cloudSortOldest: '最早',
+    fileSortMenu: '排序',
     navTrash: '垃圾桶',
     navTrashTip: '刪除的檔案會移至系統垃圾桶，可從那裡還原',
     secQuickStart: '快速開始',
