@@ -4839,6 +4839,11 @@ function registerHomeIpc(): void {
     newMindmapTab()
   })
 
+  ipcMain.handle(HOME_CHANNELS.newDrawing, (_event, opts?: NewFileOpts) => {
+    rememberPendingDir('excalidraw', opts)
+    newExcalidrawTab()
+  })
+
   ipcMain.handle(HOME_CHANNELS.newHwp, (_event, opts?: NewFileOpts) => {
     rememberPendingDir('hwp', opts)
     newHwpTab()

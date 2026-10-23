@@ -1875,6 +1875,14 @@ export function Home({
       sub: '.pdf',
       action: () => window.aiOffice.newPdf(newFileOpts),
     },
+    // last of the new-file cards: the drawing editor has no AI panel yet
+    {
+      ext: 'excalidraw',
+      title: t('newDrawing'),
+      sub: '.excalidraw.md',
+      noAi: true,
+      action: () => window.aiOffice.newDrawing(newFileOpts),
+    },
   ]
 
   function renderQuickCards() {
@@ -1886,7 +1894,7 @@ export function Home({
             <span className="quick-text">
               <span className="quick-title-row">
                 <span className="quick-title">{item.title}</span>
-                <span className="ai-chip">AI</span>
+                {!item.noAi && <span className="ai-chip">AI</span>}
               </span>
               <span className="quick-sub">{item.sub}</span>
             </span>
