@@ -2,7 +2,7 @@ import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs'
 import { readFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
-import { test, expect, type Page } from '@playwright/test'
+import { test, expect, type ElectronApplication, type Page } from '@playwright/test'
 import { createDrawing, openDrawing } from '@genoffice/excalidraw-engine'
 import type { DrawingElement } from '@genoffice/excalidraw-engine'
 import { closeAndSaveVideo, launchShell, screenshotPath, waitForPageWithUrl } from './helpers'
@@ -33,8 +33,21 @@ interface ShellApisOnWindow {
   aiOffice: { openPath(path: string): Promise<void> }
 }
 
-const listTabs = (page: Page): Promise<TabSummaryOnWindow[]> =>
-  page.evaluate(() => (window as unknown as ShellApisOnWindow).aiOfficeTabs.list())
+/** the shell window: the one carrying the tab API, which is not always the first window */
+async function shellWindow(app: ElectronApplication): Promise<Page> {
+  for (const candidate of app.windows()) {
+    const isShell = await candidate
+      .evaluate(() => (window as unknown as Partial<ShellApisOnWindow>).aiOfficeTabs !== undefined)
+      .catch(() => false)
+    if (isShell) return candidate
+  }
+  throw new Error('no shell window')
+}
+
+const listTabs = async (app: ElectronApplication): Promise<TabSummaryOnWindow[]> =>
+  (await shellWindow(app)).evaluate(() =>
+    (window as unknown as ShellApisOnWindow).aiOfficeTabs.list(),
+  )
 
 function element(id: string, type: string, extra: Record<string, unknown> = {}): DrawingElement {
   return {
@@ -124,7 +137,7 @@ test.describe('drawing editor', () => {
       videoDir: 'excalidraw-open-save',
       openFile: notePath,
     })
-    const { app, page } = launched
+    const { app } = launched
     try {
       const drawing = await waitForPageWithUrl(app, '://excalidraw/')
       const outside: string[] = []
@@ -134,7 +147,7 @@ test.describe('drawing editor', () => {
       })
       await drawing.waitForSelector('canvas.interactive', { timeout: 30_000 })
       await expect
-        .poll(async () => (await listTabs(page)).map((tab) => tab.kind))
+        .poll(async () => (await listTabs(app)).map((tab) => tab.kind))
         .toContain('excalidraw')
       // the picture was found in the vault: no "not found" notice
       await drawing.waitForTimeout(1_500)
@@ -184,15 +197,17 @@ test.describe('drawing editor', () => {
     const notePath = join(vault, 'Sketch.md')
     writeFileSync(notePath, noteText())
     const launched = await launchShell({ onboardingSeen: true, videoDir: 'excalidraw-plain-md' })
-    const { app, page } = launched
+    const { app } = launched
     try {
-      await page.evaluate(
+      await (
+        await shellWindow(app)
+      ).evaluate(
         (path) => (window as unknown as ShellApisOnWindow).aiOffice.openPath(path),
         notePath,
       )
       await waitForPageWithUrl(app, '://excalidraw/')
       await expect
-        .poll(async () => (await listTabs(page)).find((tab) => tab.filePath === notePath)?.kind)
+        .poll(async () => (await listTabs(app)).find((tab) => tab.filePath === notePath)?.kind)
         .toBe('excalidraw')
     } finally {
       await closeAndSaveVideo(launched, 'excalidraw-plain-md')
